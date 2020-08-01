@@ -25,4 +25,10 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::resource('jenis', 'JenisController');	
 	Route::put('/jenis/{id}/restore', 'JenisController@restore')->name('jenis.restore');
 	Route::delete('/jenis/{id}/permanent', 'JenisController@permanent')->name('jenis.permanent');
+	
+	Route::resource('satuan', 'SatuanController');
+	Route::put('/satuan/{id}/restore', 'SatuanController@restore')->name('satuan.restore');
+	Route::delete('/satuan/{id}/permanent', 'SatuanController@permanent')->name('satuan.permanent');
+
+	Route::resource('barang', 'BarangController');
 });
