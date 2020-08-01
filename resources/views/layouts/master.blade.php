@@ -42,7 +42,7 @@
     @include('layouts.navbar')
     <!-- Header -->
     <!-- Header -->
-    <div class="header bg-primary pb-4">
+    <div class="header bg-primary pb-5">
       <div class="container-fluid">
         {{-- <div class="header-body">
           <div class="row align-items-center py-4">
@@ -65,7 +65,7 @@
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--5">
+    <div class="container-fluid mt--4">
         <div class="row">
             @yield('content')
         </div>
