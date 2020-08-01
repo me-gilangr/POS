@@ -14,8 +14,10 @@ class CreateSatuansTable extends Migration
     public function up()
     {
         Schema::create('T00_M_SATUAN', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+					$table->char('FK_SATUAN', 3);
+					$table->string('FN_SATUAN', 10);
+					$table->softDeletes();
+					$table->timestamps();
         });
     }
 

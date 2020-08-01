@@ -178,7 +178,7 @@ return [
 
 				// Other
 				Spatie\Permission\PermissionServiceProvider::class,
-
+				Laravolt\Indonesia\ServiceProvider::class,
     ],
 
     /*
@@ -229,6 +229,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+				// Other
+				'Indonesia' => Laravolt\Indonesia\Facade::class,
 
     ],
 
