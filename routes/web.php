@@ -23,4 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::resource('jenis', 'JenisController');	
+	Route::resource('satuan', 'SatuanController');	
 });
