@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Jenis extends Model
 {
-	use SoftDeletes;
 	protected $table = 'T00_M_JENIS';
+	use SoftDeletes;
+
+	protected $fillable = [
+		'FK_JENIS', 'FN_JENIS'
+	];
 }
