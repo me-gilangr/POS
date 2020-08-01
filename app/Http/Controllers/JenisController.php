@@ -147,6 +147,7 @@ class JenisController extends Controller
 				$jenis = Jenis::onlyTrashed()->where('FK_JENIS', '=', $id)->firstOrFail();
 				$jenis->restore();
 
+				session()->flash('info', 'Data di-Pulihkan !');
 				return redirect(route('jenis.index'));
 			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');
@@ -160,6 +161,7 @@ class JenisController extends Controller
 				$jenis = Jenis::onlyTrashed()->where('FK_JENIS', '=', $id)->firstOrFail();
 				$jenis->forceDelete();
 
+				session()->flash('warning', 'Data di-Hapus Permanent !');
 				return redirect(route('jenis.index'));
 			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');

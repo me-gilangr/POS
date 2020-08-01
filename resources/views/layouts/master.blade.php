@@ -31,6 +31,12 @@
   <link rel="stylesheet" href="{{ asset('') }}assets/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
   <!-- Argon CSS -->
   <link rel="stylesheet" href="{{ asset('') }}assets/css/argon.css?v=1.2.0" type="text/css">
+
+	{{-- Other --}}
+	<link rel="stylesheet" href="{{ asset('') }}other/toastr/toastr.min.css" type="text/css">
+
+	@yield('css')	
+
 </head>
 
 <body>
@@ -87,7 +93,39 @@
   <script src="{{ asset('') }}assets/vendor/jquery.scrollbar/jquery.scrollbar.min.js"></script>
   <script src="{{ asset('') }}assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
-  <script src="{{ asset('') }}assets/js/argon.js?v=1.2.0"></script>
+	<script src="{{ asset('') }}assets/js/argon.js?v=1.2.0"></script>
+
+	{{-- Other --}}
+  <script src="{{ asset('') }}other/toastr/toastr.min.js"></script>
+
+	<script src="{{ asset('') }}other/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
+	@if (session()->has('success'))
+	<script>
+		toastr.success("{{ session('success') }}", 'Berhasil !');
+	</script>
+	@endif
+
+	@if (session()->has('warning'))
+	<script>
+		toastr.warning("{{ session('warning') }}", 'Perhatian !');
+	</script>
+	@endif
+
+	@if (session()->has('info'))
+	<script>
+		toastr.info("{{ session('info') }}", 'Informasi !');
+	</script>
+	@endif
+
+	@if (session()->has('error'))
+	<script>
+		toastr.error("{{ session('error') }}", 'Error !');
+	</script>
+	@endif
+
+	@yield('script')	
+
 </body>
 
 </html>
