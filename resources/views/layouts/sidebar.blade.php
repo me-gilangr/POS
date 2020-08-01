@@ -49,6 +49,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">PO Supplier</a>
                     <a class="dropdown-item" href="#">Receive</a>
+                    <a class="dropdown-item" href="#">Tagihan Supplier</a>
                 </div>
             </li>
             <li class="nav-item">
