@@ -15,6 +15,10 @@ class CreateDetailpobelisTable extends Migration
     {
         Schema::create('T20_D_PO_BELI', function (Blueprint $table) {
             $table->char('FK_PO_BELI',10);
+            $table->char('FK_RLS_BRG_SUP',7);
+            $table->integer('FQT_PO_BELI');
+            $table->double('FHARGA_PO_BELI');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
