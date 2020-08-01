@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Barang extends Model
 {
-    use SoftDeletes;
-    protected $table = 'T00_M_BRG';
+	protected $table = 'T00_M_BRG';
+	protected $primaryKey = 'FK_BRG';
+	public $incrementing = false;
+	
+	use SoftDeletes;
+
+	protected $fillable = [
+		'FK_BRG', 'FN_BRG'
+	];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Barang;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -13,7 +14,9 @@ class BarangController extends Controller
      */
     public function index()
     {
-        //
+        $barang = Barang::orderBy('FN_BRG')->get();
+        $barang_terhapus = Barang::onlyTrashed()->orderBy('deleted_at', 'DESC')->get();
+        return view('barang.index', compact('barang','barang_terhapus'));
     }
 
     /**

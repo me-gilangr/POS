@@ -38,18 +38,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					@forelse ($jenis as $item)
+					@forelse ($barang as $item)
 						<tr>
-							<td>{{ $item->FK_BARANG }}</td>
 							<td>{{ $item->FN_BRG }}</td>
+                            <td>{{ $item->FN_BRG }}</td>
+                            <td>{{ $item->FN_SATUAN }}</td>
+                            <td>{{ $item->FN_JENIS }}</td>
 							<td class="text-center">
 								<div class="btn-group">
-									<a href="{{ route('jenis.edit', $item->FK_JENIS) }}" class="btn btn-sm btn-warning">
+									<a href="{{ route('barang.edit', $item->FN_BRG) }}" class="btn btn-sm btn-warning">
 										Edit Data
 									</a>
 									<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('delete{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
 									
-									<form action="{{ route('jenis.destroy', $item->FK_JENIS) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
+									<form action="{{ route('barang.destroy', $item->FN_BRG) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
 										@csrf
 										@method('DELETE')
 									</form>
@@ -58,8 +60,8 @@
 						</tr>
 					@empty
 						<tr>
-							<td colspan="3" class="text-center">
-								Belum Ada Data Jenis
+							<td colspan="5" class="text-center">
+								Belum Ada Data Barang
 							</td>
 						</tr>
 					@endforelse

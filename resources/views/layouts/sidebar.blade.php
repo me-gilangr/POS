@@ -23,7 +23,7 @@
                     <span class="nav-link-text">Master Data</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Barang</a>
+                    <a class="dropdown-item" href="{{ route('barang.index') }}">Barang</a>
                     <a class="dropdown-item" href="{{ route('jenis.index') }}">Jenis</a>
                     <a class="dropdown-item" href="{{ route('satuan.index') }}">Satuan</a>
                     <div class="dropdown-divider"></div>
