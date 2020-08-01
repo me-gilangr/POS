@@ -16,6 +16,7 @@ class CreateJenisTable extends Migration
         Schema::create('T00_M_JENIS', function (Blueprint $table) {
 					$table->char('FK_JENIS', 3);
 					$table->string('FN_JENIS', 10);
+					$table->softDeletes();
 					$table->timestamps();
         });
     }
