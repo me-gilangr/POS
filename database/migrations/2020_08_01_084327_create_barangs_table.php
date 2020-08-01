@@ -14,7 +14,7 @@ class CreateBarangsTable extends Migration
     public function up()
     {
         Schema::create('T00_M_BRG', function (Blueprint $table) {
-            $table->char('FK_BRG',7);
+            $table->char('FK_BRG',7)->primary();
             $table->string('FN_BRG',50);
             $table->char('FK_SAT',3);
             $table->char('FK_JENIS',3);

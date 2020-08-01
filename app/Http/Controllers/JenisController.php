@@ -85,8 +85,14 @@ class JenisController extends Controller
      */
     public function edit($id)
     {
-        //
-    }
+			try {
+				$edit = Jenis::where('FK_JENIS', '=', $id)->firstOrFail();
+				return view('jenis.edit', compact('edit'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
 
     /**
      * Update the specified resource in storage.
@@ -97,8 +103,22 @@ class JenisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+			$this->validate($request, [
+				'FN_JENIS' => 'required|string'
+			]);
+
+			try {
+				$jenis = Jenis::where('FK_JENIS', '=', $id)->firstOrFail();
+				$jenis->update([
+					'FN_JENIS' => $request->FN_JENIS
+				]);
+
+				session()->flash('success', 'Perubahan di-Simpan !');
+				return redirect(route('jenis.index'));
+			} catch (\Exception $e) {
+				return redirect()->back('error', 'Terjadi Kesalahan !');
+			}
+		}
 
     /**
      * Remove the specified resource from storage.

@@ -14,7 +14,7 @@ class CreateSuppliersTable extends Migration
     public function up()
     {
         Schema::create('T00_M_SUPP', function (Blueprint $table) {
-					$table->char('FK_SUP', 5);
+					$table->char('FK_SUP', 5)->primary();
 					$table->string('FN_SUP', 50);
 					$table->string('FTELP', 12);
 					$table->string('FKONTAK_SUP', 20);

@@ -14,7 +14,7 @@ class CreateRelasiBarangSuppliersTable extends Migration
     public function up()
     {
         Schema::create('T10_RLS_BRG_SUPP', function (Blueprint $table) {
-            $table->char('FK_BRG',7);
+            $table->char('FK_BRG',7)->primary();
             $table->char('FK_RLS_BRG_SUP',7);
             $table->string('FK_PART_SUP',25);
             $table->string('FN_BRG_SUP',50);
