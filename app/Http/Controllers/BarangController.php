@@ -117,6 +117,16 @@ class BarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $barang = Barang::where('FK_BRG', '=', $id)->firstOrFail();
+            $barang->delete();
+            
+            session()->flash('warning', 'Data di-Hapus !');
+            return redirect(route('barang.index'));
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 }

@@ -46,12 +46,11 @@
                             <td>{{ $item->jenis->FN_JENIS }}</td>
 							<td class="text-center">
 								<div class="btn-group">
-									<a href="{{ route('barang.edit', $item->FN_BRG) }}" class="btn btn-sm btn-warning">
+									<a href="{{ route('barang.edit', $item->FK_BRG) }}" class="btn btn-sm btn-warning">
 										Edit Data
 									</a>
-									<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('delete{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
-									
-									<form action="{{ route('barang.destroy', $item->FN_BRG) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
+									<a class="btn btn-sm btn-danger delete" data-number="{{ $loop->iteration }}" href="#" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
+									<form action="{{ route('barang.destroy', $item->FK_BRG) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
 										@csrf
 										@method('DELETE')
 									</form>
@@ -138,4 +137,47 @@
 @endsection
 
 @section('script')
+<script>
+        $(document).ready(function() {
+            $('.delete').on('click', function(e) {
+                e.preventDefault();
+    
+                var number = $(this).data('number');
+                Swal.fire({
+                    title: 'Hapus Data Barang ?',
+                    text: "Data Barang Akan di-Hapus!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f5365c',
+                    cancelButtonColor: '#bcbbbb',
+                    confirmButtonText: 'Hapus Data !',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.value) {
+                        document.getElementById('delete'+number).submit();
+                    }
+                });
+            });
+    
+            $('.del').on('click', function(e) {
+                e.preventDefault();
+    
+                var number = $(this).data('number');
+                Swal.fire({
+                    title: 'Hapus Data Barang ?',
+                    text: "Data Barang Akan di-Hapus Permanent!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#f5365c',
+                    cancelButtonColor: '#bcbbbb',
+                    confirmButtonText: 'Hapus Permanent !',
+                    cancelButtonText: 'Batal',
+                }).then((result) => {
+                    if (result.value) {
+                        document.getElementById('del'+number).submit();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection
