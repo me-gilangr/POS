@@ -14,7 +14,7 @@ class CreateHeaderpobelisTable extends Migration
     public function up()
     {
         Schema::create('T20_H_PO_BELI', function (Blueprint $table) {
-            $table->char('FK_SUPP',5);
+            $table->char('FK_SUPP',5)->primary();
             $table->date('FTGL_PO_BELI');
             $table->char('FK_PO_BELI',10);
             $table->unsignedBigInteger('user_id');
