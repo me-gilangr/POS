@@ -19,15 +19,38 @@
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
+                    <i class="ni ni-collection text-primary"></i>
+                    <span class="nav-link-text">Master Data</span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Barang</a>
                     <a class="dropdown-item" href="#">Jenis</a>
+                    <a class="dropdown-item" href="#">Satuan</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Supplier</a>
+                    <a class="dropdown-item" href="#">Customer</a>
                 </div>
-                </li>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ni ni-tv-2 text-primary"></i>
+                    <span class="nav-link-text">Relasi Barang</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Barang Supplier</a>
+                    <a class="dropdown-item" href="#">Barang Customer</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ni ni-cart text-primary"></i>
+                    <span class="nav-link-text">Pembelian</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">PO Supplier</a>
+                    <a class="dropdown-item" href="#">Receive</a>
+                </div>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="icons.html">
                 <i class="ni ni-planet text-orange"></i>
@@ -61,4 +84,24 @@
             <li class="nav-item">
               <a class="nav-link" href="register.html">
                 <i class="ni ni-circle-08 text-pink"></i>
-      
+                <span class="nav-link-text">Register</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upgrade.html">
+                <i class="ni ni-send text-dark"></i>
+                <span class="nav-link-text">Upgrade</span>
+              </a>
+            </li>
+          </ul>
+          <!-- Divider -->
+          <hr class="my-3">
+          <!-- Heading -->
+          <h6 class="navbar-heading p-0 text-muted">
+            <span class="docs-normal">Documentation</span>
+          </h6>
+          <!-- Navigation -->
+        </div>
+      </div>
+    </div>
+  </nav>
