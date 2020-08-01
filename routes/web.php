@@ -23,5 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::resource('jenis', 'JenisController');	
+	Route::put('/jenis/{id}/restore', 'JenisController@restore')->name('jenis.restore');
+	Route::delete('/jenis/{id}/permanent', 'JenisController@permanent')->name('jenis.permanent');
+	
 	Route::resource('satuan', 'SatuanController');	
 });

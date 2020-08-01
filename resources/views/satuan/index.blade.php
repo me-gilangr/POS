@@ -40,7 +40,7 @@
 									</a>
 									<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('delete{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
 									
-									<form action="{{ route('satuan.destroy', $item->FK_JENIS) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
+									<form action="{{ route('satuan.destroy', $item->FK_SATUAN) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
 										@csrf
 										@method('DELETE')
 									</form>

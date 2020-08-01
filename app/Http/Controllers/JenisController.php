@@ -15,7 +15,8 @@ class JenisController extends Controller
     public function index()
     {
 			$jenis = Jenis::orderBy('FN_JENIS', 'ASC')->get();
-			return view('jenis.index', compact('jenis'));
+			$jenis_terhapus = Jenis::onlyTrashed()->orderBy('deleted_at', 'DESC')->get();
+			return view('jenis.index', compact('jenis', 'jenis_terhapus'));
 		}
 
     /**
@@ -115,6 +116,32 @@ class JenisController extends Controller
 				return redirect(route('jenis.index'));
 			} catch (\Exception $e) {
 				dd($e);
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function restore(Request $request, $id)
+		{
+			try {
+				$jenis = Jenis::onlyTrashed()->where('FK_JENIS', '=', $id)->firstOrFail();
+				$jenis->restore();
+
+				return redirect(route('jenis.index'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function permanent($id)
+		{
+			try {
+				$jenis = Jenis::onlyTrashed()->where('FK_JENIS', '=', $id)->firstOrFail();
+				$jenis->forceDelete();
+
+				return redirect(route('jenis.index'));
+			} catch (\Exception $e) {
 				session()->flash('error', 'Terjadi Kesalahan !');
 				return redirect()->back();
 			}

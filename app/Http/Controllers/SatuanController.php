@@ -14,7 +14,7 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        $satuan = Satuan::orderBy('FK_SATUAN');
+        $satuan = Satuan::orderBy('FK_SATUAN')->get();
         return view('satuan.index', compact('satuan'));
     }
 
@@ -36,7 +36,33 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'FN_SATUAN' => 'required|string',
+        ]);
+
+        try {
+    $no = Satuan::withTrashed()->where('FK_SATUAN','like','S%')->get();
+    if ( count($no) > 0) {
+        $array = count($no) - 1;
+        $data = $no[$array]->FK_SATUAN;
+        $hapus = (int) substr($data,1,2);
+        $hapus++;
+        $kodeSatuan = 'S' . sprintf("%02s", $hapus);
+    }else{
+        $kodeSatuan = 'S01';
+    }
+
+            $satuan = Satuan::firstOrCreate([
+                'FK_SATUAN' => $kodeSatuan,
+                'FN_SATUAN' => $request->FN_SATUAN,
+            ]);
+
+            session()->flash('success', 'Data Satuan di-Tambahkan !');
+            return redirect(route('satuan.index'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**
