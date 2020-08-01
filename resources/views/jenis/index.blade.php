@@ -45,7 +45,7 @@
 									<a href="{{ route('jenis.edit', $item->FK_JENIS) }}" class="btn btn-sm btn-warning">
 										Edit Data
 									</a>
-									<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('delete{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
+									<a class="btn btn-sm btn-danger delete" data-number="{{ $loop->iteration }}" href="#" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
 									
 									<form action="{{ route('jenis.destroy', $item->FK_JENIS) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
 										@csrf
@@ -97,7 +97,7 @@
 											<a href="#" onclick="event.preventDefault(); document.getElementById('restore{{ $loop->iteration }}').submit();" class="btn btn-sm btn-warning">
 												Pulihkan Data
 											</a>
-											<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('del{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Permanen</a>
+											<a class="btn btn-sm btn-danger del" href="#" data-number="{{ $loop->iteration }}" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Permanen</a>
 											
 											
 											<form action="{{ route('jenis.restore', $item->FK_JENIS) }}" method="post" id="restore{{ $loop->iteration }}" onsubmit="">
@@ -134,4 +134,47 @@
 @endsection
 
 @section('script')
+<script>
+	$(document).ready(function() {
+		$('.delete').on('click', function(e) {
+			e.preventDefault();
+
+			var number = $(this).data('number');
+			Swal.fire({
+				title: 'Hapus Data Jenis ?',
+				text: "Data Jenis Akan di-Hapus!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#f5365c',
+				cancelButtonColor: '#bcbbbb',
+				confirmButtonText: 'Hapus Data !',
+				cancelButtonText: 'Batal',
+			}).then((result) => {
+				if (result.value) {
+					document.getElementById('delete'+number).submit();
+				}
+			});
+		});
+
+		$('.del').on('click', function(e) {
+			e.preventDefault();
+
+			var number = $(this).data('number');
+			Swal.fire({
+				title: 'Hapus Data Jenis ?',
+				text: "Data Jenis Akan di-Hapus Permanent!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#f5365c',
+				cancelButtonColor: '#bcbbbb',
+				confirmButtonText: 'Hapus Permanent !',
+				cancelButtonText: 'Batal',
+			}).then((result) => {
+				if (result.value) {
+					document.getElementById('del'+number).submit();
+				}
+			});
+		});
+	});
+</script>
 @endsection
