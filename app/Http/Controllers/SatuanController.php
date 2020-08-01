@@ -15,7 +15,8 @@ class SatuanController extends Controller
     public function index()
     {
         $satuan = Satuan::orderBy('FK_SATUAN')->get();
-        return view('satuan.index', compact('satuan'));
+        $satuan_terhapus = Satuan::onlyTrashed()->orderBy('deleted_at', 'DESC')->get();
+        return view('satuan.index', compact('satuan','satuan_terhapus'));
     }
 
     /**
@@ -84,7 +85,13 @@ class SatuanController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $edit = Satuan::where('FK_Satuan', '=', $id)->firstOrFail();
+            return view('satuan.edit', compact('edit'));
+        } catch (\Exception $e) {
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**
@@ -96,7 +103,21 @@ class SatuanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'FN_SATUAN' => 'required|string'
+        ]);
+
+        try {
+            $satuan = Satuan::where('FK_SATUAN', '=', $id)->firstOrFail();
+            $satuan->update([
+                'FN_SATUAN' => $request->FN_SATUAN
+            ]);
+
+            session()->flash('success', 'Perubahan di-Simpan !');
+            return redirect(route('satuan.index'));
+        } catch (\Exception $e) {
+            return redirect()->back('error', 'Terjadi Kesalahan !');
+        }
     }
 
     /**
@@ -107,6 +128,41 @@ class SatuanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $satuan = Satuan::where('FK_SATUAN', '=', $id)->firstOrFail();
+            $satuan->delete();
+            
+            session()->flash('warning', 'Data di-Hapus !');
+            return redirect(route('satuan.index'));
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
+    public function restore(Request $request, $id)
+		{
+			try {
+				$satuan = Satuan::onlyTrashed()->where('FK_SATUAN', '=', $id)->firstOrFail();
+				$satuan->restore();
+
+				return redirect(route('satuan.index'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
+
+		public function permanent($id)
+		{
+			try {
+				$satuan = Satuan::onlyTrashed()->where('FK_SATUAN', '=', $id)->firstOrFail();
+				$satuan->forceDelete();
+
+				return redirect(route('satuan.index'));
+			} catch (\Exception $e) {
+				session()->flash('error', 'Terjadi Kesalahan !');
+				return redirect()->back();
+			}
+		}
 }
