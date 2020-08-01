@@ -24,7 +24,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Barang</a>
-                    <a class="dropdown-item" href="#">Jenis</a>
+                    <a class="dropdown-item" href="{{ route('jenis.index') }}">Jenis</a>
                     <a class="dropdown-item" href="#">Satuan</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Supplier</a>
