@@ -33,7 +33,9 @@
   <link rel="stylesheet" href="{{ asset('') }}assets/css/argon.css?v=1.2.0" type="text/css">
 
 	{{-- Other --}}
-	<link rel="stylesheet" href="{{ asset('') }}other/toastr/toastr.min.css" type="text/css">
+  <link rel="stylesheet" href="{{ asset('') }}other/toastr/toastr.min.css" type="text/css">
+  <link href="{{ asset('') }}other/select2/css/select2.min.css" rel="stylesheet" />
+
 
 	@yield('css')	
 
@@ -97,6 +99,7 @@
 
 	{{-- Other --}}
   <script src="{{ asset('') }}other/toastr/toastr.min.js"></script>
+  <script src="{{ asset('') }}other/select2/js/select2.min.js"></script>
 
 	<script src="{{ asset('') }}other/sweetalert2/dist/sweetalert2.all.min.js"></script>
 

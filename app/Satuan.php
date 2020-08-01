@@ -16,4 +16,9 @@ class Satuan extends Model
 	protected $fillable = [
 		'FK_SATUAN', 'FN_SATUAN'
 	];
+
+	public function barang()
+	{
+		return $this->belongsTo('App\Barang','FK_SATUAN','FK_SATUAN');
+	}
 }

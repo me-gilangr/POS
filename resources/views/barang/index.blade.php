@@ -40,10 +40,10 @@
 				<tbody>
 					@forelse ($barang as $item)
 						<tr>
-							<td>{{ $item->FN_BRG }}</td>
+							<td>{{ $item->FK_BRG }}</td>
                             <td>{{ $item->FN_BRG }}</td>
-                            <td>{{ $item->FN_SATUAN }}</td>
-                            <td>{{ $item->FN_JENIS }}</td>
+                            <td>{{ $item->satuan->FN_SATUAN }}</td>
+                            <td>{{ $item->jenis->FN_JENIS }}</td>
 							<td class="text-center">
 								<div class="btn-group">
 									<a href="{{ route('barang.edit', $item->FN_BRG) }}" class="btn btn-sm btn-warning">

@@ -14,6 +14,16 @@ class Barang extends Model
 	use SoftDeletes;
 
 	protected $fillable = [
-		'FK_BRG', 'FN_BRG'
-	];
+		'FK_BRG', 'FN_BRG','FK_SATUAN','FK_JENIS'
+    ];
+    
+    public function satuan()
+    {
+        return $this->hasOne('App\Satuan', 'FK_SATUAN','FK_SATUAN');
+    }
+    public function jenis()
+    {
+        return $this->hasOne('App\Jenis', 'FK_JENIS','FK_JENIS');
+    }
 }
+

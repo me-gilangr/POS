@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Barang;
+use App\Jenis;
+use App\Satuan;
 use Illuminate\Http\Request;
 
 class BarangController extends Controller
@@ -26,7 +28,9 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        $satuan = Satuan::orderBy('FK_SATUAN')->get();
+        $jenis = Jenis::orderBy('FK_JENIS')->get();
+        return view('barang.create', compact('satuan','jenis'));
     }
 
     /**
@@ -37,7 +41,38 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'FN_BRG' => 'required|string',
+            'FK_SATUAN' => 'required|string',
+            'FK_JENIS' => 'required|string',
+        ]);
+
+        try {
+    $no = Barang::withTrashed()->where('FK_BRG','like','BRG%')->get();
+    if ( count($no) > 0) {
+        $array = count($no) - 1;
+        $data = $no[$array]->FK_BRG;
+        $hapus = (int) substr($data,3,4);
+        $hapus++;
+        $kodebarang = 'BRG' . sprintf("%04s", $hapus);
+    }else{
+        $kodebarang = 'BRG0001';
+    }
+
+            $satuan = Barang::firstOrCreate([
+                'FK_BRG' => $kodebarang,
+                'FN_BRG' => $request->FN_BRG,
+                'FK_SATUAN' => $request->FK_SATUAN,
+                'FK_JENIS' => $request->FK_JENIS,
+            ]);
+
+            session()->flash('success', 'Data Barang di-Tambahkan !');
+            return redirect(route('barang.index'));
+        } catch (\Exception $e) {
+            dd($e);
+            session()->flash('error', 'Terjadi Kesalahan !');
+            return redirect()->back();
+        }
     }
 
     /**

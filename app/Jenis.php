@@ -16,4 +16,8 @@ class Jenis extends Model
 	protected $fillable = [
 		'FK_JENIS', 'FN_JENIS'
 	];
+	public function barang()
+	{
+		return $this->belongsTo('App\Barang','FK_SATUAN','FK_SATUAN');
+	}
 }
