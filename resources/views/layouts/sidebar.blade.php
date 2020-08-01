@@ -39,6 +39,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#">Barang Supplier</a>
                     <a class="dropdown-item" href="#">Barang Customer</a>
+                    <a class="dropdown-item" href="#">Stock Barang</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -51,6 +52,17 @@
                     <a class="dropdown-item" href="#">Receive</a>
                     <a class="dropdown-item" href="#">Tagihan Supplier</a>
                 </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="ni ni-cart text-primary"></i>
+                  <span class="nav-link-text">Penjualan</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">PO Csutomer</a>
+                  <a class="dropdown-item" href="#">Kirim</a>
+                  <a class="dropdown-item" href="#">AR</a>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="icons.html">
