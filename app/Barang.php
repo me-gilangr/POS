@@ -23,7 +23,9 @@ class Barang extends Model
     }
     public function jenis()
     {
-        return $this->hasOne('App\Jenis', 'FK_JENIS','FK_JENIS');
+        return $this->hasOne('App\Jenis', 'FK_JENIS','FK_JENIS')->withTrashed();
+        // Jadi artinya jenis yang sudah di hapus secara temporary atau status nya di hapus masih bisa di tampilkan 
+        // Namun saat input barang lagi tidak bisa pakai jenis yang status nya sudah di-hapus 
     }
 }
 

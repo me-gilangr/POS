@@ -17,6 +17,8 @@ class BarangController extends Controller
     public function index()
     {
         $barang = Barang::orderBy('FN_BRG')->get();
+        //dd($barang);
+        // Oh Jadi si data jenis nya terhapus sedangkan si data jenis nya terkait sama data barang yang ada
         $barang_terhapus = Barang::onlyTrashed()->orderBy('deleted_at', 'DESC')->get();
         return view('barang.index', compact('barang','barang_terhapus'));
     }
@@ -92,9 +94,15 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($FK_JENIS)
     {
-        //
+        try {
+            $editjenis = Jenis::where('FK_JENIS','=',$FK_JENIS)->firstOrFail();
+            $databarang = Barang::get();
+            return view('Jenis.edit',compact('editjenis', 'databarang'));
+        } catch (\Exception $th) {
+            return redirect(route('Jenis.index'));
+        }
     }
 
     /**

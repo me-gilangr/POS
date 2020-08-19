@@ -1,9 +1,9 @@
 @extends('layouts.master')	
 @section('css')
 <style>
-.select2-container .select2-selection--single {
-    height: 50px;
-}
+	.select2-container .select2-selection--single {
+		height: 50px;
+	}
 </style>
 @endsection
 @section('content')

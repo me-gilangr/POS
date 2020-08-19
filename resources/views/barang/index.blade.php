@@ -91,37 +91,34 @@
 							</tr>
 						</thead>
 						<tbody>
-							@forelse ($jenis_terhapus as $item)
-								<tr>
-									<td>{{ $item->FK_JENIS }}</td>
-									<td>{{ $item->FN_JENIS }}</td>
-									<td class="text-center">
-										<div class="btn-group">
-											<a href="#" onclick="event.preventDefault(); document.getElementById('restore{{ $loop->iteration }}').submit();" class="btn btn-sm btn-warning">
-												Pulihkan Data
-											</a>
-											<a class="btn btn-sm btn-danger" href="#" onclick="event.preventDefault(); document.getElementById('del{{ $loop->iteration }}').submit();" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Permanen</a>
-											
-											
-											<form action="{{ route('jenis.restore', $item->FK_JENIS) }}" method="post" id="restore{{ $loop->iteration }}" onsubmit="">
-												@csrf
-												@method('PUT')
-											</form>
-
-											<form action="{{ route('jenis.permanent', $item->FK_JENIS) }}" method="post" id="del{{ $loop->iteration }}" onsubmit="">
-												@csrf
-												@method('DELETE')
-											</form>
-										</div>
-									</td>
-								</tr>
-							@empty
-								<tr>
-									<td colspan="3" class="text-center">
-										Belum Ada Data Jenis
-									</td>
-								</tr>
-							@endforelse
+						@forelse ($barang_terhapus as $item)
+						<!-- Ini Buat Table data yang udah pernah di-hapus  -->
+						<!-- Di Tampung sama variable $barang_terhapus -->
+							<tr>
+								<td>{{ $item->FK_BRG }}</td>
+								<td>{{ $item->FN_BRG }}</td>
+								<td>{{ $item->satuan->FN_SATUAN }}</td>
+								<td>{{ $item->jenis->FN_JENIS }}</td>
+								<td class="text-center">
+									<div class="btn-group">
+										<a href="{{ route('barang.edit', $item->FK_BRG) }}" class="btn btn-sm btn-warning">
+											Edit Data
+										</a>
+										<a class="btn btn-sm btn-danger delete" data-number="{{ $loop->iteration }}" href="#" style="border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem;">Hapus Data</a>
+										<form action="{{ route('barang.destroy', $item->FK_BRG) }}" method="post" id="delete{{ $loop->iteration }}" onsubmit="">
+											@csrf
+											@method('DELETE')
+										</form>
+									</div>
+								</td>
+							</tr>
+						@empty
+							<tr>
+								<td colspan="5" class="text-center">
+									Belum Ada Data Barang
+								</td>
+							</tr>
+						@endforelse
 						</tbody>
 					</table>
 				</div>

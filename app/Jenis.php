@@ -18,6 +18,6 @@ class Jenis extends Model
 	];
 	public function barang()
 	{
-		return $this->belongsTo('App\Barang','FK_SATUAN','FK_SATUAN');
+		return $this->belongsTo('App\Barang','FK_SATUAN','FK_SATUAN')->withTrashed();
 	}
 }
